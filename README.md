@@ -113,8 +113,8 @@ saving
   - 이번 프로젝트는 일정이 굉장히 타이트 하여 첫날 설계까지 마친 후 API를 중요도 순으로 나누어 개발을 시작했습니다.
 
 - JIRA
-  - 팀 프로젝트를 진행할 때 처럼 JIRA를 이용하여 프로젝트를 관리하였습니다.
-  - 인텔리제이와 연동하여 해당 티켓당 브랜치를 생성하여 PR 하는방식으로 진행하였습니다.
+  - 팀 프로젝트를 진행할 때 처럼 JIRA 를 이용하여 프로젝트를 체계적으로 관리하였습니다.
+  - IntelliJ와 연동하여 티켓을 만들어 티켓에 해당하는 브랜치를 생성하여 Pull Request 하여 체계적으로 관리하였습니다.
 <p style="display: flex; justify-content: center" >
   <img src="https://github.com/newnyee/saving/assets/121937711/5ec57a59-4fe9-4513-af3a-3f9778b9ea2c" width="400"/>
   <img src="https://github.com/newnyee/saving/assets/121937711/2faa77a0-2750-42ac-8023-116b14e73c61" width="400"/>
