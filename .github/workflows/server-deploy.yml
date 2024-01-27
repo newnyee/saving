@@ -38,7 +38,7 @@ jobs:
       - name: Jib 
         env: 
           DOCKERHUB_REPOSITORY_PATH: ${{ secrets.DOCKERHUB_REPOSITORY_PATH }} 
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} 
+          # SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} 
         run: ./gradlew jib -x test 
           -Djib.to.image=$DOCKERHUB_REPOSITORY_PATH 
           -Djib.to.tags=latest 
@@ -81,13 +81,13 @@ jobs:
           aws ec2 revoke-security-group-ingress --group-id ${{ secrets.AWS_Security_Group_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32 > /dev/null 
         if: always() 
  
-      - name: Slack notification 
-        uses: 8398a7/action-slack@v3 
-        with: 
-          username: github action 
-          status: ${{ job.status }} 
-          author_name: Github Action 
-          fields: repo,message,commit # repo,message,commit,author,action,eventName,ref,workflow,job,took 
-        env: 
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} 
-        if: always()
+      # - name: Slack notification 
+      #   uses: 8398a7/action-slack@v3 
+      #   with: 
+      #     username: github action 
+      #     status: ${{ job.status }} 
+      #     author_name: Github Action 
+      #     fields: repo,message,commit # repo,message,commit,author,action,eventName,ref,workflow,job,took 
+      #   env: 
+      #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} 
+      #   if: always()
