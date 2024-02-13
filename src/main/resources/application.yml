@@ -1,0 +1,19 @@
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST}:3307/wanted_saving?serverTimezone=Asia/Seoul&useUniCode=yes&characterEncoding=UTF-8
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}
+
+jwt:
+  secret: ${JWT_SECRET_KEY}
+  expired-ms: ${JWT_EXPIRED_MS}
+
+#logging:
+#  level:
+#    com.saving: debug
+
+webhook:
+  api:
+    url: ${WEBHOOK_API_URL}
