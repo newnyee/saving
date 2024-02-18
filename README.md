@@ -166,7 +166,7 @@ saving
 <br>
 
 ### 📌CI/CD 파이프라인 구축
-- 자동 배포를 위한 CI/CD 파이프라인 구축하였습니다.
+- [Github Actions](https://github.com/newnyee/saving/actions)를 이용한 CI/CD 파이프라인 구축
 <p align="center">
     <img src="https://github.com/newnyee/saving/assets/121937711/c731eab2-5aca-4537-b471-e9d9052a4b5e"/>
     CI/CD 파이프라인 아키텍처
