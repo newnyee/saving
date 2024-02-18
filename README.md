@@ -100,6 +100,8 @@ saving
 
 [📌API 설계](https://github.com/newnyee/saving/wiki/%F0%9F%92%BB-%EA%B8%B0%EB%B3%B8-%EA%B5%AC%ED%98%84-%EA%B3%BC%EC%A0%95#API-%EC%84%A4%EA%B3%84)
 
+[📌CI/CD 파이프라인 구축](https://github.com/newnyee/saving?tab=readme-ov-file#cicd-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8-%EA%B5%AC%EC%B6%95)
+
 <br>
 
 ## 💻 상세 구현 과정
