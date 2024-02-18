@@ -160,3 +160,12 @@ saving
 - 이번 프로젝트는 특히나 자주 사용되지 않는 영어 용어들이 많기때문에 API 사용시 단어에 대한 혼동이 올 수 있을것을 생각하여 [swagger를 이용](https://github.com/newnyee/saving/commit/f37e2c100c134645091b9b4121670e5dce94ddc7)하여 더욱 더 꼼꼼하게 명세서를 만들었습니다.
 
   <img src="https://github.com/newnyee/saving/assets/121937711/5c50ac7c-7e52-44ee-8f53-1a07eb4407df" width="600"/>
+
+<br>
+
+### 📌CI/CD 파이프라인 구축
+- 자동 배포를 위한 CI/CD 파이프라인 구축하였습니다.
+<p align="center">
+    <img src="https://github.com/newnyee/saving/assets/121937711/c731eab2-5aca-4537-b471-e9d9052a4b5e"/>
+    CI/CD 파이프라인 아키텍처
+</p>
