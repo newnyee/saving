@@ -4,7 +4,11 @@ on:
   push: 
     branches: [ "main" ]
  
-jobs: 
+jobs:
+  build:
+    if: ${{ !contains(github.event.head_commit.modified, 'README.md') }}
+
+
   deploy: 
     name: server ci-cd 
     runs-on: ubuntu-latest 
