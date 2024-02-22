@@ -110,8 +110,12 @@ saving
 <br>
 
 ## 💻 상세 구현 과정
-이번 프로젝트를 구현하기 위해 여러가지의 가계부 어플리케이션을 이용해 본 후 가장 많이 사용되는 예산 방식, 지출 관리 방식, 결산 방식, 이용자의 카테고리 관리 방식으로 구현함
-
+### 📌CI/CD 파이프라인 구축
+- [Github Actions](https://github.com/newnyee/saving/actions)를 이용한 CI/CD 파이프라인 구축
+<p align="center">
+    <img src="https://github.com/newnyee/saving/assets/121937711/c731eab2-5aca-4537-b471-e9d9052a4b5e"/>
+    CI/CD 파이프라인 아키텍처
+</p>
 <br>
 
 ### 📌Notion, JIRA를 이용한 프로젝트 관리
@@ -164,12 +168,3 @@ saving
 - 자주 사용되지 않는 영어 용어들이 많기때문에 API 사용시 단어에 대한 혼동이 올 수 있을것을 생각하여 [swagger를 이용](https://github.com/newnyee/saving/commit/f37e2c100c134645091b9b4121670e5dce94ddc7)하여 꼼꼼하게 명세서를 만듦
 
   <img src="https://github.com/newnyee/saving/assets/121937711/5c50ac7c-7e52-44ee-8f53-1a07eb4407df" width="600"/>
-
-<br>
-
-### 📌CI/CD 파이프라인 구축
-- [Github Actions](https://github.com/newnyee/saving/actions)를 이용한 CI/CD 파이프라인 구축
-<p align="center">
-    <img src="https://github.com/newnyee/saving/assets/121937711/c731eab2-5aca-4537-b471-e9d9052a4b5e"/>
-    CI/CD 파이프라인 아키텍처
-</p>
