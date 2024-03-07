@@ -38,7 +38,7 @@ public class UserCreateRequestDto {
         this.password = password;
     }
 
-    public void changPassword(PasswordEncoder passwordEncoder) {
+    public void changePassword(PasswordEncoder passwordEncoder) {
         this.password = passwordEncoder.encode(password);
     }
 

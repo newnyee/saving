@@ -28,7 +28,7 @@ public class UserService {
         if (userRepository.existsByUsername(userCreateRequestDto.getUsername())) {
             throw new DuplicateUserNameException();
         }
-        userCreateRequestDto.changPassword(passwordEncoder);
+        userCreateRequestDto.changePassword(passwordEncoder);
 
         return new UserCreatedResponseDto(userRepository.save(userCreateRequestDto.toEntity()));
     }
