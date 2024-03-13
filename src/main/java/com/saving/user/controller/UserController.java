@@ -2,7 +2,7 @@ package com.saving.user.controller;
 
 import com.saving.category.service.CategoryService;
 import com.saving.common.response.ApiResponse;
-import com.saving.common.response.JwtResponse;
+import com.saving.common.response.TokenResponse;
 import com.saving.user.dto.LoginRequestDto;
 import com.saving.user.dto.UserCreateRequestDto;
 import com.saving.user.dto.UserCreatedResponseDto;
@@ -28,7 +28,7 @@ public class UserController {
     private final CategoryService categoryService;
 
     @Operation(summary = "회원 가입", description = "사용자 정보에 의하여 계정이 생성됩니다.")
-    @PostMapping("/api/v1/users")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ApiResponse<UserCreatedResponseDto> createUser(
             @Valid @RequestBody UserCreateRequestDto userCreateRequestDto) {
@@ -41,7 +41,7 @@ public class UserController {
 
     @Operation(summary = "로그인", description = "사용자의 계정과 비밀번호를 입력하여 인증 후 JWT 발급이 완료됩니다.")
     @PostMapping("/login")
-    public ApiResponse<JwtResponse> login(
+    public ApiResponse<TokenResponse> login(
             @Valid @RequestBody LoginRequestDto loginRequestDto) {
 
         return ApiResponse.ok(userService.authenticationAndCreateJwt(loginRequestDto));
