@@ -44,6 +44,6 @@ public class UserController {
     public ApiResponse<TokenResponse> login(
             @Valid @RequestBody LoginRequestDto loginRequestDto) {
 
-        return ApiResponse.ok(userService.authenticationAndCreateJwt(loginRequestDto));
+        return ApiResponse.ok(userService.authenticationAndCreateToken(loginRequestDto));
     }
 }
