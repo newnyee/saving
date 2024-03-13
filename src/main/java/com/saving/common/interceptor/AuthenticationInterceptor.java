@@ -1,6 +1,6 @@
 package com.saving.common.interceptor;
 
-import com.saving.common.util.JwtUtil;
+import com.saving.common.util.TokenUtil;
 import com.saving.user.domain.repository.UserRepository;
 import com.saving.user.exception.InvalidTokenException;
 import com.saving.user.exception.JwtExpiredException;
@@ -21,7 +21,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     private static final String FIRST_STRING_OF_TOKEN = "Bearer";
     private static final String AUTHORIZATION = "Authorization";
 
-    private final JwtUtil jwtUtil;
+    private final TokenUtil tokenUtil;
     private final UserRepository userRepository;
 
     @Override
@@ -46,7 +46,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         String token = authorization.split(" ")[1];
 
         try {
-            Long userId = jwtUtil.verifyToken(token);
+            Long userId = tokenUtil.verifyToken(token);
             if (userRepository.existsById(userId)) {
                 request.setAttribute("userId", userId);
                 return true;

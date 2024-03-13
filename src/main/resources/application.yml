@@ -2,17 +2,22 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${MYSQL_HOST}:3307/wanted_saving?serverTimezone=Asia/Seoul&useUniCode=yes&characterEncoding=UTF-8
+    url: jdbc:mysql://${HOST_IP}:3307/wanted_saving?serverTimezone=Asia/Seoul&useUniCode=yes&characterEncoding=UTF-8
     username: ${MYSQL_USERNAME}
     password: ${MYSQL_PASSWORD}
+  data:
+    redis:
+      host: ${HOST_IP}
+      port: 6379
 
 jwt:
-  secret: ${JWT_SECRET_KEY}
-  expired-ms: ${JWT_EXPIRED_MS}
+  secret-key: ${JWT_SECRET_KEY}
 
-#logging:
-#  level:
-#    com.saving: debug
+token:
+  refresh-token-id-prefix: ${REFRESH_TOKEN_ID_PREFIX}
+  expired-time:
+    access: ${ACCESS_EXPIRED_TIME}
+    refresh: ${REFRESH_EXPIRED_TIME}
 
 webhook:
   api:
