@@ -39,7 +39,7 @@ public class UserController {
         return ApiResponse.created(user);
     }
 
-    @Operation(summary = "로그인", description = "사용자의 계정과 비밀번호를 입력하여 인증 후 JWT 발급이 완료됩니다.")
+    @Operation(summary = "로그인", description = "사용자의 계정과 비밀번호를 입력하여 인증 후 Access Token, Refresh Token 발급이 완료됩니다.")
     @PostMapping("/login")
     public ApiResponse<TokenResponse> login(
             @Valid @RequestBody LoginRequestDto loginRequestDto) {
