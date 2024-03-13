@@ -3,7 +3,7 @@ package com.saving.common.interceptor;
 import com.saving.common.util.TokenUtil;
 import com.saving.user.domain.repository.UserRepository;
 import com.saving.user.exception.InvalidTokenException;
-import com.saving.user.exception.JwtExpiredException;
+import com.saving.user.exception.TokenExpiredException;
 import com.saving.user.exception.NullTokenException;
 import com.saving.user.exception.UserNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,7 +18,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 @RequiredArgsConstructor
 public class AuthenticationInterceptor implements HandlerInterceptor {
 
-    private static final String FIRST_STRING_OF_TOKEN = "Bearer";
+    private static final String PREFIX_FOR_TOKEN = "Bearer";
     private static final String AUTHORIZATION = "Authorization";
 
     private final TokenUtil tokenUtil;
@@ -38,7 +38,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             throw new NullTokenException();
         }
 
-        if (!authorization.startsWith(FIRST_STRING_OF_TOKEN)) {
+        if (!authorization.startsWith(PREFIX_FOR_TOKEN)) {
             log.error("[InvalidTypeOfTokenException] ex");
             throw new InvalidTokenException();
         }
@@ -53,9 +53,9 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             }
             throw new UserNotFoundException();
 
-        } catch (JwtExpiredException e) {
-            log.error("[JwtExpiredException] ex", e);
-            throw new JwtExpiredException();
+        } catch (TokenExpiredException e) {
+            log.error("[{}] ex", e.getClass().getSimpleName(), e);
+            throw new TokenExpiredException();
 
         } catch (Exception e) {
             log.error("[{}] ex ", e.getClass().getSimpleName(), e);

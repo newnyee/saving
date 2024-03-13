@@ -9,7 +9,7 @@ import com.saving.expense.exception.ExpenseMethodNotFoundException;
 import com.saving.expense.exception.NotExistExpenseInCategoryException;
 import com.saving.user.exception.DuplicateUserNameException;
 import com.saving.user.exception.InvalidTokenException;
-import com.saving.user.exception.JwtExpiredException;
+import com.saving.user.exception.TokenExpiredException;
 import com.saving.user.exception.NullTokenException;
 import com.saving.user.exception.UserNotFoundException;
 import java.util.Arrays;
@@ -30,9 +30,9 @@ public enum ErrorType {
     T001("T001", "토큰을 입력해주세요.",
             NullTokenException.class, HttpStatus.BAD_REQUEST),
     T002("T002", "유효하지 않은 토큰입니다.",
-            InvalidTokenException.class, HttpStatus.BAD_REQUEST),
+            InvalidTokenException.class, HttpStatus.UNAUTHORIZED),
     T003("T003", "만료된 토큰입니다.",
-            JwtExpiredException.class, HttpStatus.BAD_REQUEST),
+            TokenExpiredException.class, HttpStatus.UNAUTHORIZED),
 
     C001("C001", "존재하지 않는 카테고리입니다.",
             CategoryNotFoundException.class, HttpStatus.BAD_REQUEST),
