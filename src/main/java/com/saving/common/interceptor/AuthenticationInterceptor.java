@@ -1,9 +1,10 @@
 package com.saving.common.interceptor;
 
-import com.saving.common.util.TokenUtil;
+import com.auth0.jwt.exceptions.TokenExpiredException;
+import com.saving.common.util.TokenUtils;
 import com.saving.user.domain.repository.UserRepository;
+import com.saving.user.exception.AuthTokenExpiredException;
 import com.saving.user.exception.InvalidTokenException;
-import com.saving.user.exception.TokenExpiredException;
 import com.saving.user.exception.NullTokenException;
 import com.saving.user.exception.UserNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,9 +20,9 @@ import org.springframework.web.servlet.HandlerInterceptor;
 public class AuthenticationInterceptor implements HandlerInterceptor {
 
     private static final String PREFIX_FOR_TOKEN = "Bearer";
-    private static final String AUTHORIZATION = "Authorization";
+    private static final String ALLOW_EXPIRED_TOKEN_ENDPOINT = "/api/v1/users/tokens";
 
-    private final TokenUtil tokenUtil;
+    private final TokenUtils tokenUtils;
     private final UserRepository userRepository;
 
     @Override
@@ -31,7 +32,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             Object handler
     ) {
 
-        String authorization = request.getHeader(AUTHORIZATION);
+        String authorization = request.getHeader("Authorization");
 
         if (authorization == null) {
             log.error("[NullTokenException] ex");
@@ -46,7 +47,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         String token = authorization.split(" ")[1];
 
         try {
-            Long userId = tokenUtil.verifyToken(token);
+            Long userId = tokenUtils.verifyToken(token);
             if (userRepository.existsById(userId)) {
                 request.setAttribute("userId", userId);
                 return true;
@@ -54,12 +55,20 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             throw new UserNotFoundException();
 
         } catch (TokenExpiredException e) {
+            // 토큰 재발급 API 호출시 헤더의 토큰이 만료된 토큰일 경우에는 접근 가능
+            if (request.getRequestURI().equals(ALLOW_EXPIRED_TOKEN_ENDPOINT)) {
+                request.setAttribute("userId",
+                        tokenUtils.getUserIdFromToken(token));
+                return true;
+            }
+
             log.error("[{}] ex", e.getClass().getSimpleName(), e);
-            throw new TokenExpiredException();
+            throw new AuthTokenExpiredException();
 
         } catch (Exception e) {
             log.error("[{}] ex ", e.getClass().getSimpleName(), e);
             throw new InvalidTokenException();
         }
     }
+
 }
