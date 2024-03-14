@@ -2,13 +2,15 @@ package com.saving.user.service;
 
 import com.saving.common.response.TokenResponse;
 import com.saving.user.domain.repository.RedisRefreshTokenRepository;
-import com.saving.common.util.TokenUtil;
+import com.saving.common.util.TokenUtils;
 import com.saving.user.domain.entity.User;
 import com.saving.user.domain.repository.UserRepository;
 import com.saving.user.dto.LoginRequestDto;
+import com.saving.user.dto.ReissueTokenRequestDto;
 import com.saving.user.dto.UserCreateRequestDto;
 import com.saving.user.dto.UserCreatedResponseDto;
 import com.saving.user.exception.DuplicateUserNameException;
+import com.saving.user.exception.InvalidTokenException;
 import com.saving.user.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +25,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final TokenUtil tokenUtil;
+    private final TokenUtils tokenUtils;
     private final RedisRefreshTokenRepository redisRefreshTokenRepository;
 
     @Transactional
@@ -47,11 +49,26 @@ public class UserService {
         Long userId = getUser.getId();
 
         if (getUser.passwordMatches(passwordEncoder, loginRequestDto.getPassword())) {
-            TokenResponse createdToken = tokenUtil.createToken(userId);
-            redisRefreshTokenRepository.setRefreshToken(userId, createdToken.getRefreshToken());
-            return createdToken;
+            return createToken(userId);
         }
 
         throw new UserNotFoundException();
+    }
+
+    public TokenResponse reissueToken(Long userId, ReissueTokenRequestDto reissueTokenRequestDto) {
+
+        String savedRefreshToken = redisRefreshTokenRepository.getRefreshToken(userId);
+
+        if (savedRefreshToken.equals(reissueTokenRequestDto.getOldRefreshToken())) {
+            return createToken(userId);
+        }
+
+        throw new InvalidTokenException();
+    }
+
+    public TokenResponse createToken(Long userId) {
+        TokenResponse token = tokenUtils.createToken(userId);
+        redisRefreshTokenRepository.setRefreshToken(userId, token.getRefreshToken());
+        return token;
     }
 }

@@ -1,7 +1,7 @@
 package com.saving.common.config.jwt;
 
 import com.auth0.jwt.algorithms.Algorithm;
-import com.saving.common.util.TokenUtil;
+import com.saving.common.util.TokenUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +19,7 @@ public class JwtConfig {
     private Long expiredRefreshTokenMs;
 
     @Bean
-    public TokenUtil jwtUtil() {
-        return new TokenUtil(Algorithm.HMAC256(jwtSecretKey), expiredAccessTokenMs, expiredRefreshTokenMs);
+    public TokenUtils jwtUtil() {
+        return new TokenUtils(Algorithm.HMAC256(jwtSecretKey), expiredAccessTokenMs, expiredRefreshTokenMs);
     }
 }

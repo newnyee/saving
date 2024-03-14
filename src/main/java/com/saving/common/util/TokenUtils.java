@@ -10,7 +10,7 @@ import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class TokenUtil {
+public class TokenUtils {
 
     private static final String CLAIM_USER_ID = "userId";
 
@@ -42,5 +42,10 @@ public class TokenUtil {
         DecodedJWT verified = verifier.verify(token);
 
         return verified.getClaim(CLAIM_USER_ID).asLong();
+    }
+
+    public Long getUserIdFromToken(String token) {
+        DecodedJWT decodeToken = JWT.decode(token);
+        return decodeToken.getClaim(CLAIM_USER_ID).asLong();
     }
 }
