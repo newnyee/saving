@@ -28,7 +28,7 @@
 • 언어 : Java 17
 • 프레임워크 : Spring Boot 3.1.5
 • 빌드 도구 : Gradle
-• 데이터베이스 : MySQL 8.0
+• 데이터베이스 : MySQL 8.0, Redis 7.2.4
 ```
 <br>
 
