@@ -55,7 +55,8 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             throw new UserNotFoundException();
 
         } catch (TokenExpiredException e) {
-            // 토큰 재발급 API 호출시 헤더의 토큰이 만료된 토큰일 경우에는 접근 가능
+            /* 토큰 재발급 시 Access 토큰이 서버에서 발급된 토큰 이면서 만료된 토큰일 때에만
+            토큰 재발급 API 호출 가능 */
             if (request.getRequestURI().equals(ALLOW_EXPIRED_TOKEN_ENDPOINT)) {
                 request.setAttribute("userId",
                         tokenUtils.getUserIdFromToken(token));
