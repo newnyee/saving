@@ -110,6 +110,12 @@ saving
 <br>
 
 ## 💻 상세 구현 과정
+### 📌Refresh Token, Access Token을 이용한 인증 프로세스 리팩토링
+<p align="center">
+    <img src="https://github.com/newnyee/saving/assets/121937711/8b41bae8-c29f-4f64-a814-3b3299a1ee9b"/>
+    토큰 인증 순서도
+</p>
+
 ### 📌CI/CD 파이프라인 구축
 - [Github Actions](https://github.com/newnyee/saving/actions)를 이용한 CI/CD 파이프라인 구축
 <p align="center">
